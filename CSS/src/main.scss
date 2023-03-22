@@ -1,0 +1,360 @@
+@import "./variables/variables";
+
+@import "./helpers/mixins";
+
+@import "./layout/global-rules";
+
+@import "./layout/header";
+
+
+// Start Landing
+.landing {
+  background-color: #ececec;
+  position: relative;
+
+  .star {
+    font-size: 30px;
+    color: $lightBlue;
+  }
+
+  .container {
+    // align center and justify space between
+    @include flex-space-between(true);
+    // padding
+    padding-left: 15px;
+    padding-right: 15px;
+    // dimensions
+    margin-top: 87px;
+    height: calc(100vh - 87px);
+    z-index: 10;
+
+    .text {
+      // dimensions and margin
+      width: 45%;
+      margin-top: -50px;
+      // animation move text from top to down
+      animation: fadeInDown 1s forwards;
+      opacity: 0;
+
+      @media (max-width: 767px) {
+        width: 100%;
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+
+        span {
+          font-size: inherit;
+          color: $lightBlue;
+        }
+
+        .star {
+          font-size: inherit;
+          color: $lightBlue;
+        }
+
+      }
+
+      p {
+        // main line height is 1.8
+        line-height: $mainLineHeight;
+        color: $grey;
+        // main font size is 18px 
+        font-size: $mainPSize;
+        margin-bottom: 10px;
+      }
+
+      a {
+        // font-size and weight
+        @include font(18px, 500);
+        color: #fff;
+        // border and margin
+        padding: 8px 16px;
+        border-radius: 10px;
+        // formats
+        background-color: $lightBlue;
+        cursor: pointer;
+        transition: $mainTransition;
+
+        &:hover {
+          background-color: $lightBlueActive;
+        }
+      }
+
+      @media (max-width: 992px) {
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 16px;
+        }
+      }
+
+
+    }
+
+    .image {
+      width: 500px;
+
+      img {
+        width: 100%;
+        opacity: 0;
+        // animation move text from down to top and then infinite move up and down
+        animation: fadeInTop 1s forwards, up-and-down 8s 1s infinite;
+      }
+
+      @media (max-width: 767px) {
+        display: none;
+      }
+    }
+  }
+}
+
+// End Landing
+
+// Start About 
+.about {
+  @include section-padding();
+
+  .container {
+
+    display: grid;
+    grid-template-columns: 500px 500px;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 20px;
+    }
+
+    @media (max-width: 767px) {
+
+      .image {
+        order: -1;
+        max-width: 500px;
+        margin: auto;
+      }
+    }
+
+    .text {
+
+      h3 {
+        font-size: 25px;
+        color: $lightBlue;
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 18px;
+        line-height: $mainLineHeight;
+      }
+    }
+
+    .image {
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+// End About
+
+// Start Skills
+
+.skills {
+  @include section-padding();
+  background-color: #ececec;
+
+  .container {
+
+    @include grid-media(350px);
+
+
+    .image {
+
+      img {
+        @media (max-width: 992px) {
+          width: 100%;
+        }
+
+      }
+
+      @media (max-width: 767px) {
+        width: 80%;
+        margin: auto;
+      }
+    }
+
+    .skills-progress {
+      .skill {
+        margin-bottom: 20px;
+
+        h3 {
+          font-size: 20px;
+          margin-bottom: 10px;
+        }
+
+        .progress {
+          height: 20px;
+          width: 100%;
+          background-color: #fff;
+
+          span {
+            display: block;
+            height: 100%;
+            background-color: $lightBlue;
+            width: 0;
+            transition: 1s;
+          }
+        }
+      }
+    }
+  }
+}
+
+// End Skills
+
+// Start Projects
+.projects {
+  @include section-padding();
+
+  .container {
+    @include grid-media(300px);
+
+    .card {
+      .image {
+        border: 2px solid #ddd;
+        padding: 5px;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .text {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        a {
+          @include font(18px, 500);
+          // margin, border and padding
+          border-radius: 10px;
+          padding: 4px 8px;
+          // colors
+          color: #4065a5;
+          // transition and cursor
+          transition: 0.3s;
+          cursor: pointer;
+
+          &:hover {
+            color: $lightBlueActive;
+          }
+        }
+      }
+
+      @media (min-width: 667px) and (max-width: 992px) {
+        &:first-child {
+          order: 1;
+        }
+
+        &:nth-child(2) {
+          order: 2;
+        }
+
+        &:nth-child(3) {
+          order: 4;
+        }
+
+        &:nth-child(4) {
+          order: 3;
+        }
+
+        &:nth-child(5) {
+          order: 5;
+        }
+
+        &:nth-child(6) {
+          order: 6;
+        }
+      }
+
+    }
+  }
+
+  >a {
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    // margin, border and padding
+    border-radius: 10px;
+    padding: 10px 20px;
+    // colors
+    background-color: $lightBlue;
+    color: $white;
+    // shadow
+    box-shadow: 0 0 6px 6px #03a9f4 inset;
+    // transition and cursor
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 0 1px 1px #03a9f4 inset;
+    }
+  }
+}
+
+// End Projects
+
+// Start Contact
+.contact {
+  @include section-padding();
+  background-color: #ececec;
+
+  .container {
+    @include grid-media(350px);
+
+    .box {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+
+      svg {
+        font-size: 70px;
+        margin-bottom: 20px;
+        color: #4065a5;
+        transition: $mainTransition;
+
+        &:hover {
+          color: $lightBlueActive;
+        }
+      }
+    }
+  }
+}
+
+.containerAnimation {
+  opacity: 0;
+}
+
+// End Contact
+
+.fadeInDown {
+  animation: fadeInDown 1s forwards;
+}
+
+@import "./layout/footer";
+
+@import "./helpers/animations";

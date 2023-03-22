@@ -1,0 +1,86 @@
+header {
+  box-shadow: 0 0 10px 0 #ddd;
+  background-color: $white;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  .container {
+    @include flex-space-between(true);
+    position: relative;
+
+    .logo {
+      img {
+        width: 80px;
+      }
+    }
+
+    .burger-icon {
+      cursor: pointer;
+      font-size: 22px;
+      display: none;
+
+      @media (max-width: 600px) {
+        display: block;
+      }
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      animation: fadeInDown 0.5s forwards;
+
+      li {
+        padding: 15px 30px;
+        overflow: hidden;
+
+        a {
+          color: $black;
+          transition: $mainTransition;
+          @include font(18px, 300);
+
+          &:hover,
+          &.active {
+            color: $lightBlue;
+            font-size: 20px;
+          }
+        }
+      }
+
+      @media (max-width: 600px) {
+        display: none;
+        position: absolute;
+        top: 120px;
+        left: 0;
+        // width - margin 
+        width: calc(100% - 40px);
+        margin-left: 20px;
+        padding: 30px;
+        // color
+        background-color: $white;
+        // display: none;
+        flex-direction: column;
+        text-align: center;
+
+        &::before {
+          content: "";
+          position: absolute;
+          right: 0;
+          top: -29px;
+          border: 15px solid;
+          border-color: transparent $white $white transparent;
+        }
+
+      }
+
+      &.ul-flex {
+        display: flex;
+      }
+    }
+  }
+}

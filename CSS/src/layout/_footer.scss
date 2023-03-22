@@ -1,0 +1,19 @@
+footer {
+  @include section-padding(30px);
+  background-color: $black;
+  text-align: center;
+  color: $white;
+
+  .links {
+    margin-top: 15px;
+
+    svg {
+      margin-left: 10px;
+      color: #fff;
+
+      &:hover {
+        color: #ddd;
+      }
+    }
+  }
+}
